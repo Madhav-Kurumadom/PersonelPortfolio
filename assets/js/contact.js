@@ -1,3 +1,7 @@
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelector(".loading").style.display = "none";
+});
+
 document.getElementById("contactForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -12,25 +16,25 @@ document.getElementById("contactForm").addEventListener("submit", function (e) {
 
   const formData = new FormData(form);
 
-  fetch("https://formspree.io/f/abcdwxyz", {
+  fetch("https://formspree.io/f/xlglvrlg", {
     method: "POST",
     body: formData,
     headers: {
       "Accept": "application/json"
     }
   })
-    .then(response => {
-      loading.style.display = "none";
-      if (response.ok) {
-        sentMessage.style.display = "block";
-        form.reset();
-      } else {
-        throw new Error("Form submission failed");
-      }
-    })
-    .catch(() => {
-      loading.style.display = "none";
-      errorMessage.innerHTML = "Something went wrong. Please try again.";
-      errorMessage.style.display = "block";
-    });
+  .then(response => {
+    loading.style.display = "none";
+    if (response.ok) {
+      sentMessage.style.display = "block";
+      form.reset();
+    } else {
+      throw new Error("Form submission failed");
+    }
+  })
+  .catch(() => {
+    loading.style.display = "none";
+    errorMessage.innerHTML = "Something went wrong. Please try again.";
+    errorMessage.style.display = "block";
+  });
 });
